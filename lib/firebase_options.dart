@@ -72,4 +72,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'notes-e0f46.firebasestorage.app',
     iosBundleId: 'com.example.firebaseCrudnote',
   );
+
 }
