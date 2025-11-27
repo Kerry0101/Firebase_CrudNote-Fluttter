@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_crudnote/crud_service.dart';
+import 'package:firebase_crudnote/login.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_crudnote/auth_service.dart';
 
 class HomePage extends StatelessWidget {
   final CrudService service = CrudService();
@@ -16,6 +18,18 @@ class HomePage extends StatelessWidget {
         title:  Text ('Firebase Ciano'),
         centerTitle: true,
         backgroundColor: Colors.teal,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout_rounded),
+            onPressed: (){
+              AuthService().signOut();
+              Navigator.pushReplacement(
+                context, 
+                MaterialPageRoute(builder: (_)=> LoginPage()),
+                );
+            },
+          )
+        ],
       ),
       floatingActionButton: FloatingActionButton( 
       backgroundColor: Colors.teal,

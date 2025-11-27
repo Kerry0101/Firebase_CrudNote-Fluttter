@@ -1,7 +1,9 @@
+import 'package:firebase_crudnote/login.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_crudnote/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crudnote/firebase_options.dart';
+import 'auth_service.dart';
 
 
 void main() async {
@@ -20,11 +22,24 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      title: 'Flutter CRUD App (Ciano)',
+      theme: ThemeData(primarySwatch: Colors.teal),
+        home: StreamBuilder(
+          stream: AuthService().userStream,
+          builder: (context, snapshot){
+          if (snapshot.connectionState == ConnectionState.waiting){
+            return const Scaffold(
+              body: Center (child: CircularProgressIndicator()),
+            );
+          }
+          if (snapshot.hasData){
+            return HomePage();
+          } else{
+            return LoginPage();
+          }
+        }
       ),
-      home: HomePage(),
     );
+
   }
 }
