@@ -15,7 +15,7 @@ class CrudService{
   
   //Read
   Stream<QuerySnapshot> getItems(){
-    return items.orderBy('createdBy', descending: true).snapshots();
+    return items.orderBy('createdAt', descending: true).snapshots();
   }
 
   //Update

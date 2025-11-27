@@ -79,7 +79,7 @@ class HomePage extends StatelessWidget {
       context: context,
       builder: (_) => AlertDialog(
         title: const Text("Delete item"),
-        content: const Text("Are you sure you want to delete this item?0"),
+        content: const Text("Are you sure you want to delete this item?"),
         actions: [
           TextButton(
             child: const Text('Delete', style: TextStyle(color: Colors.red)),
@@ -112,9 +112,9 @@ class HomePage extends StatelessWidget {
             ),
             SizedBox(height: 12,),
             TextField(
-              controller: nameController,
+              controller: quantityController,
               decoration: InputDecoration(
-                labelText: 'Name',
+                labelText: 'Amount',
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
               ),
             ),
@@ -186,7 +186,7 @@ class HomePage extends StatelessWidget {
                if (nameController.text.isNotEmpty && quantityController.text.isNotEmpty){
                 service.updateItem(item.id, nameController.text, int.parse(quantityController.text));
                 Navigator.pop(context);
-                };
+                }
             },
           ),
         ],
